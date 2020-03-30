@@ -4,12 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h2>Citas</h2>
+<br />
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Medicos.Nombre) Medico
@@ -25,21 +22,27 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medicos.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Reserva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora_Reserva)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicos.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_Reserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora_Reserva)
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+<p class="text-right">
+    @Html.ActionLink("Registrar", "Create","",new { @class = "btn btn-primary" })
+</p>

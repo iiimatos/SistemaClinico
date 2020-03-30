@@ -134,6 +134,7 @@
     <Compile Include="Controllers\Mantenimiento\MedicosController.cs" />
     <Compile Include="Controllers\Mantenimiento\PacientesController.cs" />
     <Compile Include="Controllers\Procesos\TCitasController.cs" />
+    <Compile Include="Controllers\Procesos\TIngresosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -301,6 +302,8 @@
     <Content Include="Views\Habitaciones\Index.cshtml" />
     <Content Include="Views\TCitas\Create.cshtml" />
     <Content Include="Views\TCitas\Index.cshtml" />
+    <Content Include="Views\TIngresos\Create.cshtml" />
+    <Content Include="Views\TIngresos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

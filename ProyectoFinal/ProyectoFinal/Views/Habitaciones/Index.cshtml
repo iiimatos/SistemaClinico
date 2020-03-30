@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -24,22 +21,26 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdHabitaciones }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdHabitaciones }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdHabitaciones })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Numero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tipo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Precio)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.IdHabitaciones }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Details", "Details", new { id = item.IdHabitaciones }, new { @class = "btn btn-info" }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.IdHabitaciones }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
 }
 
 </table>
+
+<p class="text-right">
+    @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
+</p>

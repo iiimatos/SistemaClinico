@@ -126,6 +126,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tablas\Habitaciones.cs" />
+    <Compile Include="Models\Tablas\Medicos.cs" />
+    <Compile Include="Models\Tablas\Pacientes.cs" />
+    <Compile Include="Models\Tablas\TAltaMedica.cs" />
+    <Compile Include="Models\Tablas\TCitas.cs" />
+    <Compile Include="Models\Tablas\TIngresos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -270,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

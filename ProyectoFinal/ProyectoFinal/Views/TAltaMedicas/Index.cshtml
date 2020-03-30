@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Tablas.TAltaMedica>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Alta Medica</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingresos.Fecha_Ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Habitacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaSalida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.montoPagar)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ingresos.Fecha_Ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Habitacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaSalida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.montoPagar)
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Registrar", "Create","", new { @class = "btn btn-primary" })
+</p>

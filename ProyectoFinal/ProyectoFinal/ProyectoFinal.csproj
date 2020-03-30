@@ -133,6 +133,7 @@
     <Compile Include="Controllers\Mantenimiento\HabitacionesController.cs" />
     <Compile Include="Controllers\Mantenimiento\MedicosController.cs" />
     <Compile Include="Controllers\Mantenimiento\PacientesController.cs" />
+    <Compile Include="Controllers\Procesos\TAltaMedicasController.cs" />
     <Compile Include="Controllers\Procesos\TCitasController.cs" />
     <Compile Include="Controllers\Procesos\TIngresosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -304,6 +305,8 @@
     <Content Include="Views\TCitas\Index.cshtml" />
     <Content Include="Views\TIngresos\Create.cshtml" />
     <Content Include="Views\TIngresos\Index.cshtml" />
+    <Content Include="Views\TAltaMedicas\Create.cshtml" />
+    <Content Include="Views\TAltaMedicas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

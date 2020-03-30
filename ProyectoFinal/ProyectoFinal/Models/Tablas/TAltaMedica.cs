@@ -34,4 +34,3 @@ namespace ProyectoFinal.Models.Tablas
 
         }
     }
-}

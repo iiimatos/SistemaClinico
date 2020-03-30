@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClinicaContext.cs" />
     <Compile Include="Models\Tablas\Habitaciones.cs" />
     <Compile Include="Models\Tablas\Medicos.cs" />
     <Compile Include="Models\Tablas\Pacientes.cs" />

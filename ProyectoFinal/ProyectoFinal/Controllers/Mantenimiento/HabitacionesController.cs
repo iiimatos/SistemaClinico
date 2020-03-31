@@ -21,7 +21,47 @@ namespace ProyectoFinal.Controllers.Mantenimiento
             return View(db.Habitaciones.ToList());
         }
 
-        // GET: Habitaciones/Details/5
+        [HttpPost]
+        public ActionResult Index(string select)
+        {
+            if (select == "doble")
+            {
+                var ingreso = from a in db.Habitaciones
+
+                              where a.Tipo == tipoHabitaciones.Doble
+
+                              select a;
+
+                return View(ingreso);
+
+            }
+            else if (select == "suite")
+            {
+                var ingreso = from a in db.Habitaciones
+
+                              where a.Tipo == tipoHabitaciones.Suite
+
+                              select a;
+
+
+                return View(ingreso);
+
+            }
+            else if (select == "privada")
+            {
+                var ingreso = from a in db.Habitaciones
+
+                              where a.Tipo == tipoHabitaciones.Privada
+
+                              select a;
+
+
+                return View(ingreso);
+            }
+
+            return View(db.Habitaciones.ToList());
+
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)

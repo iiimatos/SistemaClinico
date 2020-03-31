@@ -23,7 +23,7 @@ namespace ProyectoFinal.Controllers.Procesos
 
         public ActionResult Create()
         {
-            ViewBag.Ingresos_Registrado = new SelectList(db.Ingresos, "IdIngresos", "Fecha_Ingreso");
+            ViewBag.Ingresos_Registrado = new SelectList(db.Ingresos, "IdIngresos", "IdIngresos");
             return View();
         }
 
@@ -38,11 +38,54 @@ namespace ProyectoFinal.Controllers.Procesos
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Ingresos_Registrado = new SelectList(db.Ingresos, "IdIngresos", "Fecha_Ingreso", tAltaMedica.Ingresos_Registrado);
+            ViewBag.Ingresos_Registrado = new SelectList(db.Ingresos, "IdIngresos", "IdIngresos", tAltaMedica.Ingresos_Registrado);
             return View(tAltaMedica);
         }
 
-   
+        public JsonResult Nombre(int clavePaciente)
+        {
+
+            var duplicado = (from i in db.Ingresos
+                             join p in db.Pacientes
+                             on i.Pacientes_Registrado equals p.IdPacientes
+                             where i.IdIngresos == clavePaciente
+                             select p.Nombre).ToList();
+            return Json(duplicado);
+        }
+
+        public JsonResult Monto(int clavePaciente)
+        {
+
+            var duplicado = (from i in db.Ingresos
+                             join h in db.Habitaciones
+                             on i.Habitaciones_Registrada equals h.IdHabitaciones
+                             where i.IdIngresos == clavePaciente
+                             select h.Precio).ToList();
+            return Json(duplicado);
+        }
+
+        public JsonResult FechaIngreso(int clavePaciente)
+        {
+
+            var duplicado = (from i in db.Ingresos
+                             where i.IdIngresos == clavePaciente
+                             select i.Fecha_Ingreso).ToList();
+            return Json(duplicado);
+        }
+
+        public JsonResult NumeroHabitacion(int clavePaciente)
+        {
+
+            var duplicado = (from i in db.Ingresos
+                             join h in db.Habitaciones
+                             on i.Habitaciones_Registrada equals h.IdHabitaciones
+                             where i.IdIngresos == clavePaciente
+                             select h.Numero).ToList();
+            return Json(duplicado);
+        }
+
+
+
 
     }
 }

@@ -5,8 +5,27 @@
 }
 
 <h2>Alta Medica</h2>
-
-
+<br />
+<div style="position: relative; left:40px;">
+    @using (Html.BeginForm("Index", "TAltaMedicas", FormMethod.Post))
+    {
+        <div>
+            <h6>Filtros de Busqueda</h6>
+            <div class="row">
+                @Html.TextBox("valor", "", new { @class = "form-control col-sm-4", placeholder = "Busqueda", required = "required" })
+                <select name="select" class="form-control col col-lg-2">
+                    <option value="">--Selecciones--</option>
+                    <option value="fecha">Fecha Salida</option>
+                    <option value="paciente">Paciente</option>
+                </select>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -30,31 +49,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingresos.Fecha_Ingreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Habitacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.montoPagar)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingresos.Fecha_Ingreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Habitacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.montoPagar)
+            </td>
+        </tr>
+    }
 
 </table>
 
 <p>
-    @Html.ActionLink("Registrar", "Create","", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
 </p>

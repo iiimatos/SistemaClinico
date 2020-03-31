@@ -6,6 +6,27 @@
 
 <h2>Citas</h2>
 <br />
+<div style="position: relative; left:40px;">
+    @using (Html.BeginForm("Index", "TCitas", FormMethod.Post))
+    {
+        <div>
+            <h6>Filtros de Busqueda</h6>
+            <div class="row">
+                @Html.TextBox("valor", "", new { @class = "form-control col-sm-4", placeholder = "Busqueda", required = "required" })
+                <select name="select" class="form-control col col-lg-2">
+                    <option value="">--Selecciones--</option>
+                    <option value="fecha">Fecha</option>
+                    <option value="medico">Medicos</option>
+                    <option value="paciente">Pacientes</option>
+                </select>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<br />
 <table class="table table-striped">
     <tr>
         <th>

@@ -15,25 +15,47 @@ namespace ProyectoFinal.Controllers.Procesos
     {
         private ClinicaContext db = new ClinicaContext();
 
-        // GET: TCitas
         public ActionResult Index()
         {
             var citas = db.Citas.Include(t => t.Medicos).Include(t => t.Pacientes);
             return View(citas.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string select, string valor)
+        {
 
-        // GET: TCitas/Create
+            if (select == "fecha")
+            {
+
+                var consulta1 = db.Citas.Include(t => t.Medicos).Include(t => t.Pacientes).Where(a => a.Fecha_Reserva == valor);
+                return View(consulta1.ToList());
+
+            }
+            else if (select == "medico")
+            {
+                int s = (from g in db.Medicos where g.Nombre == valor select g.IdMedicos).SingleOrDefault();
+
+                var consulta1 = db.Citas.Include(t => t.Medicos).Include(t => t.Pacientes).Where(a => a.Medicos_Registrado.Equals(s));
+                return View(consulta1.ToList());
+
+            }else if (select=="paciente")
+            {
+                int s = (from g in db.Pacientes where g.Nombre == valor select g.IdPacientes).SingleOrDefault();
+
+                var consulta1 = db.Citas.Include(t => t.Medicos).Include(t => t.Pacientes).Where(a => a.Pacientes_Registrado.Equals(s));
+                return View(consulta1.ToList());
+            }
+            var ingresos = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes);
+            return View(ingresos.ToList());
+        }
+
         public ActionResult Create()
         {
             ViewBag.Medicos_Registrado = new SelectList(db.Medicos, "IdMedicos", "Nombre");
             ViewBag.Pacientes_Registrado = new SelectList(db.Pacientes, "IdPacientes", "Nombre");
             return View();
         }
-
-        // POST: TCitas/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdCitas,Pacientes_Registrado,Fecha_Reserva,Hora_Reserva,Medicos_Registrado")] TCitas tCitas)

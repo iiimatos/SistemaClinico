@@ -22,6 +22,29 @@ namespace ProyectoFinal.Controllers.Procesos
             return View(ingresos.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string select, string valor)
+        {
+
+            if (select == "fecha")
+            {
+
+                var consulta1 = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes).Where(a => a.Fecha_Ingreso == valor);
+                return View(consulta1.ToList());
+
+            }
+            else if (select == "habitacion")
+            {
+                int s = (from g in db.Habitaciones where g.Numero == valor select g.IdHabitaciones).SingleOrDefault();
+
+                var consulta1 = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes).Where(a => a.Habitaciones_Registrada.Equals(s));
+                return View(consulta1.ToList());
+
+            }
+            var ingresos = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes);
+            return View(ingresos.ToList());
+        }
+
         public ActionResult Create()
         {
             ViewBag.Habitaciones_Registrada = new SelectList(db.Habitaciones, "IdHabitaciones", "Numero");

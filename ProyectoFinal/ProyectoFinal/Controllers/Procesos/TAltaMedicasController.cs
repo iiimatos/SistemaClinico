@@ -21,6 +21,44 @@ namespace ProyectoFinal.Controllers.Procesos
             return View(altaMedicas.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string select, string valor)
+        {
+
+            if (select == "paciente")
+            {
+
+                var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.Paciente == valor);
+
+                ViewBag.total = consulta1.Sum(a => a.montoPagar);
+                ViewBag.conteo = consulta1.Count();
+                ViewBag.min = consulta1.Min(a => a.montoPagar);
+                ViewBag.max = consulta1.Max(a => a.montoPagar);
+                ViewBag.prom = consulta1.Average(a => a.montoPagar);
+
+                return View(consulta1.ToList());
+
+            }
+            else if (select == "fecha")
+            {
+                int s = (from g in db.Medicos where g.Nombre == valor select g.IdMedicos).SingleOrDefault();
+
+                var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.fechaSalida == valor);
+
+                ViewBag.total = consulta1.Sum(a => a.montoPagar);
+                ViewBag.conteo = consulta1.Count();
+                ViewBag.min = consulta1.Min(a => a.montoPagar);
+                ViewBag.max = consulta1.Max(a => a.montoPagar);
+                ViewBag.prom = consulta1.Average(a => a.montoPagar);
+
+                return View(consulta1.ToList());
+
+            }
+            var ingresos = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes);
+            return View(ingresos.ToList());
+        }
+
+
         public ActionResult Create()
         {
             ViewBag.Ingresos_Registrado = new SelectList(db.Ingresos, "IdIngresos", "IdIngresos");

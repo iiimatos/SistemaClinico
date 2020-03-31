@@ -5,24 +5,25 @@
 }
 
 <h2>Habitaciones</h2>
-<div>
+<br />
+<div style="position:relative; left:40px;">
     @using (Html.BeginForm("Index", "Habitaciones", FormMethod.Post))
     {
-        <div>
-            
-            <br />
-            <div class="row">
-                <select name="select" class="form-control col col-md-4">
-                    <option value="">--Selecciones--</option>
-                    <option value="doble">Doble</option>
-                    <option value="suite">Suite</option>
-                    <option value="privada">Privada</option>
-                </select>
-                <div class="col col-md-2">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                </div>
+    <div>
+        <h6 class="">Filtros de busqueda</h6>
+
+        <div class="row">
+            <select name="select" class="form-control col col-md-4">
+                <option value="">--Selecciones--</option>
+                <option value="doble">Doble</option>
+                <option value="suite">Suite</option>
+                <option value="privada">Privada</option>
+            </select>
+            <div class="col col-md-2">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </div>
         </div>
+    </div>
     }
 </div>
 <br />

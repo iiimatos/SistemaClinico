@@ -21,7 +21,67 @@ namespace ProyectoFinal.Controllers.Mantenimiento
             return View(db.Pacientes.ToList());
         }
 
-        // GET: Pacientes/Details/5
+        [HttpPost]
+        public ActionResult Index(string select, string valor)
+        {
+            if (select == "nombre")
+            {
+                var ingreso = from s in db.Pacientes
+                              select s;
+
+                ingreso = ingreso.Where(s => s.Nombre.Contains(valor));
+
+
+                return View(ingreso);
+
+            }
+            else if (select == "asegurado")
+            {
+                if (valor == "si" || valor == "Si" || valor == "SI" || valor == "sI")
+                {
+                    var ingreso = from a in db.Pacientes
+
+                                  where a.Asegurado.Equals(true)
+
+                                  select a;
+
+
+                    return View(ingreso);
+                }
+                else if (valor == "no" || valor == "No" || valor == "NO" || valor == "nO")
+                {
+                    var ingreso = from a in db.Pacientes
+
+                                  where a.Asegurado.Equals(false)
+
+                                  select a;
+
+
+                    return View(ingreso);
+
+                }
+
+                return View(db.Pacientes.ToList());
+
+            }
+            else if (select == "cedula")
+            {
+                var ingreso = from s in db.Pacientes
+                              select s;
+
+                ingreso = ingreso.Where(s => s.Cedula.Contains(valor));
+
+
+                return View(ingreso);
+            }
+            else
+            {
+
+                return View(db.Pacientes.ToList());
+
+            }
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)

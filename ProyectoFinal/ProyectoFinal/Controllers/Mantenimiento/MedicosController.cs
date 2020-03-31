@@ -21,7 +21,33 @@ namespace ProyectoFinal.Controllers.Mantenimiento
             return View(db.Medicos.ToList());
         }
 
-        // GET: Medicos/Details/5
+        [HttpPost]
+        public ActionResult Index(string select, string valor)
+        {
+            if (select == "nombre")
+            {
+                var ingreso = from s in db.Medicos
+                              select s;
+
+                ingreso = ingreso.Where(s => s.Nombre.Contains(valor));
+
+
+                return View(ingreso);
+
+            }
+            else if (select == "especialidad")
+            {
+                var ingreso = from s in db.Medicos
+                              select s;
+
+                ingreso = ingreso.Where(s => s.Especialidad.Contains(valor));
+
+
+                return View(ingreso);
+            }
+
+            return View(db.Medicos.ToList());
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)

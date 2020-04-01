@@ -28,7 +28,7 @@ namespace ProyectoFinal.Controllers.Procesos
             if (select == "paciente")
             {
 
-                var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.Paciente == valor);
+                var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.Paciente.Contains(valor));
 
                 ViewBag.total = consulta1.Sum(a => a.montoPagar);
                 ViewBag.conteo = consulta1.Count();
@@ -41,7 +41,6 @@ namespace ProyectoFinal.Controllers.Procesos
             }
             else if (select == "fecha")
             {
-                int s = (from g in db.Medicos where g.Nombre == valor select g.IdMedicos).SingleOrDefault();
 
                 var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.fechaSalida == valor);
 

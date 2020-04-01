@@ -26,7 +26,7 @@
     }
 </div>
 <br />
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Ingresos.Fecha_Ingreso)
@@ -75,6 +75,81 @@
 
 </table>
 
-<p>
+<p class="text-right">
     @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
 </p>
+
+<br />
+<hr />
+<div>
+    <h3 class="text-center">Resultados de filtros</h3>
+    <br />
+    <div id="button">
+        <button class="btn btn-success" onclick="mostrar();">Ver <i class="fa fa-eye"></i></button>
+    </div>
+    <br />
+    <div id="resultados">
+        <div class="row">
+            <div class="col card">
+                <div class="card-body">
+                    <h4 class="card-title">Conteo</h4>
+                    <p class="card-text">Resultado: @ViewBag.conteo</p>
+                </div>
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <h4 class="card-title">Promedio</h4>
+                    <p class="card-text">Resultado: @ViewBag.prom</p>
+                </div>
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <h4 class="card-title">Suma</h4>
+                    <p class="card-text">Resultado: @ViewBag.total</p>
+                </div>
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <h4 class="card-title">Maximo</h4>
+                    <p class="card-text">Resultado: @ViewBag.max</p>
+                </div>
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <h4 class="card-title">Minimo</h4>
+                    <p class="card-text">Resultado: @ViewBag.min</p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-right">
+            <button class="btn btn-warning" onclick="ocultar();"><i class="fa fa-arrow-left"></i></button>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        function mostrar() {
+
+            $("#resultados").show('slow');
+            $("#button").hide('slow');
+
+        }
+
+        function ocultar() {
+
+        $("#resultados").hide('slow');
+        $("#button").show('slow');
+
+        }
+
+        $("#resultados").hide('slow');
+
+    </script>
+}
+
+

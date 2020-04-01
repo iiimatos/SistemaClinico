@@ -138,7 +138,6 @@
         function generaMonto(data) {
             var fechaf = document.getElementById("FSalida").value;
             var fechai = document.getElementById("FIngreso").value;
-
             var fecha1 = new Date(fechai);
             var fecha2 = new Date(fechaf);
             var resta1 = fecha2.getTime() - fecha1.getTime();
@@ -146,6 +145,6 @@
             return resta2 * data;
         }
 
-
+        
     </script>
 }

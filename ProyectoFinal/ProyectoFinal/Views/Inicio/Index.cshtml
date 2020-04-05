@@ -3,5 +3,95 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    body {
+        padding-top: 56px;
+    }
 
+    .carousel-item {
+        height: 65vh;
+        min-height: 300px;
+        background: no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .portfolio-item {
+        margin-bottom: 30px;
+    }
+</style>
+
+<h1 class="my-4">Bienvenido Sistema Clinico</h1>
+
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('https://www.elsetge.cat/myimg/f/83-834832_regalos-personalizados-para-medicos.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>La paciencia es la mejor medicina</h3>
+                    <p>John Florio</p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('https://www.ecopetit.cat/wpic/mpic/19-197024_backgrounds-medical-hd-best-free-medicine-wallpapers-medicine.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>La medicina es una ciencia de la incertidumbre y un arte de la probabilidad</h3>
+                    <p>William Osler</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('https://besthqwallpapers.com/img/original/1190/texture-science-dna-chain.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>La medicina es el arte de conservar la salud y eventualmente de curar la enfermedad ocurrida en el cuerpo.</h3>
+                    <p>Avicena</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>
+<div class="container">
+
+    <h3 class="my-4">Servicios</h3>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">Modulo Mantenimientos</h4>
+                <div class="card-body">
+                    <p class="card-text">Este modulo de mantenimientos ofrece un amplio registro para Medicos, Pacientes y Habitaciones que esten en la clinica. <br /> Se permite agregar estos, actualizarlo por algun cambio o eliminarlo si es necesario.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">Modulo Procesos</h4>
+                <div class="card-body">
+                    <p class="card-text">Este modulo de procesos ofrece un amplio registro a las distintas funcionalidades que se trabaja dentro de una clinica, este nos permite reservar citas medicas, ingresos hospitalarios y poder darle alta medicas a los pacientes ingresados con sus respectivos detalles acerca del ingreso</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">Modulo Consultas</h4>
+                <div class="card-body">
+                    <p class="card-text">Este modulo de consultas ofrece un amplio manejo acerca de poder filtros de busqueda a nuestras distitas informaciones que tenemos almacenadas. <br /> Ya se realizar busqueda por medicos, pacientes, habitaciones, citas medicas, ingresos medicos y por ultimo alta medicas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

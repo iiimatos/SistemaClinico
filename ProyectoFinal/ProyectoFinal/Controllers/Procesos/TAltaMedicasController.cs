@@ -29,7 +29,7 @@ namespace ProyectoFinal.Controllers.Procesos
             {
 
                 var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.Paciente.Contains(valor));
-
+                try { 
                 ViewBag.total = consulta1.Sum(a => a.montoPagar);
                 ViewBag.conteo = consulta1.Count();
                 ViewBag.min = consulta1.Min(a => a.montoPagar);
@@ -37,6 +37,12 @@ namespace ProyectoFinal.Controllers.Procesos
                 ViewBag.prom = consulta1.Average(a => a.montoPagar);
 
                 return View(consulta1.ToList());
+                } catch(Exception ea)
+                {
+                    Response.Write("<script>alert('No esta registrado dicho paciente')</script>");
+                    return View(consulta1.ToList());
+
+                }
 
             }
             else if (select == "fecha")
@@ -44,13 +50,24 @@ namespace ProyectoFinal.Controllers.Procesos
 
                 var consulta1 = db.AltaMedicas.Include(t => t.Ingresos).Where(t => t.fechaSalida == valor);
 
-                ViewBag.total = consulta1.Sum(a => a.montoPagar);
-                ViewBag.conteo = consulta1.Count();
-                ViewBag.min = consulta1.Min(a => a.montoPagar);
-                ViewBag.max = consulta1.Max(a => a.montoPagar);
-                ViewBag.prom = consulta1.Average(a => a.montoPagar);
+                try
+                {
+                    ViewBag.total = consulta1.Sum(a => a.montoPagar);
+                    ViewBag.conteo = consulta1.Count();
+                    ViewBag.min = consulta1.Min(a => a.montoPagar);
+                    ViewBag.max = consulta1.Max(a => a.montoPagar);
+                    ViewBag.prom = consulta1.Average(a => a.montoPagar);
 
-                return View(consulta1.ToList());
+                    return View(consulta1.ToList());
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('No esta registrada dicha fecha')</script>");
+                    return View(consulta1.ToList());
+
+                }
+
+
 
             }
             var ingresos = db.Ingresos.Include(t => t.Habitaciones).Include(t => t.Pacientes);

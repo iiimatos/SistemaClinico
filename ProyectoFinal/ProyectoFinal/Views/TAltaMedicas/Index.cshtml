@@ -20,136 +20,149 @@
                 </select>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="generatePDF();">PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
     }
 </div>
 <br />
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ingresos.Fecha_Ingreso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaIngreso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paciente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Habitacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaSalida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.montoPagar)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div id="tabla">
+    <table class="table table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ingresos.Fecha_Ingreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Habitacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaSalida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.montoPagar)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingresos.Fecha_Ingreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Habitacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.montoPagar)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ingresos.Fecha_Ingreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Habitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.montoPagar)
+                </td>
+            </tr>
+        }
 
-<p class="text-right">
-    @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
-</p>
+    </table>
+</div>
+    <p class="text-right">
+        @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
+    </p>
 
-<br />
-<hr />
-<div>
-    <h3 class="text-center">Resultados de filtros</h3>
     <br />
-    <div id="button">
-        <button class="btn btn-success" onclick="mostrar();">Ver <i class="fa fa-eye"></i></button>
-    </div>
-    <br />
-    <div id="resultados">
-        <div class="row">
-            <div class="col card">
-                <div class="card-body">
-                    <h4 class="card-title">Conteo</h4>
-                    <p class="card-text">Resultado: @ViewBag.conteo</p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h4 class="card-title">Promedio</h4>
-                    <p class="card-text">Resultado: @ViewBag.prom</p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h4 class="card-title">Suma</h4>
-                    <p class="card-text">Resultado: @ViewBag.total</p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h4 class="card-title">Maximo</h4>
-                    <p class="card-text">Resultado: @ViewBag.max</p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h4 class="card-title">Minimo</h4>
-                    <p class="card-text">Resultado: @ViewBag.min</p>
-                </div>
-            </div>
+    <hr />
+    <div>
+        <h3 class="text-center">Resultados de filtros</h3>
+        <br />
+        <div id="button">
+            <button class="btn btn-success" onclick="mostrar();">Ver <i class="fa fa-eye"></i></button>
         </div>
         <br />
-        <div class="text-right">
-            <button class="btn btn-warning" onclick="ocultar();"><i class="fa fa-arrow-left"></i></button>
+        <div id="resultados">
+            <div class="row">
+                <div class="col card">
+                    <div class="card-body">
+                        <h4 class="card-title">Conteo</h4>
+                        <p class="card-text">Resultado: @ViewBag.conteo</p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h4 class="card-title">Promedio</h4>
+                        <p class="card-text">Resultado: @ViewBag.prom</p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h4 class="card-title">Suma</h4>
+                        <p class="card-text">Resultado: @ViewBag.total</p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h4 class="card-title">Maximo</h4>
+                        <p class="card-text">Resultado: @ViewBag.max</p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h4 class="card-title">Minimo</h4>
+                        <p class="card-text">Resultado: @ViewBag.min</p>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="text-right">
+                <button class="btn btn-warning" onclick="ocultar();"><i class="fa fa-arrow-left"></i></button>
+            </div>
         </div>
     </div>
-</div>
-<br />
+    <br />
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
 
-        function mostrar() {
+            function mostrar() {
 
-            $("#resultados").show('slow');
-            $("#button").hide('slow');
+                $("#resultados").show('slow');
+                $("#button").hide('slow');
 
-        }
+            }
 
-        function ocultar() {
+            function ocultar() {
 
-        $("#resultados").hide('slow');
-        $("#button").show('slow');
+                $("#resultados").hide('slow');
+                $("#button").show('slow');
 
-        }
+            }
 
-        $("#resultados").hide('slow');
+            $("#resultados").hide('slow');
 
-    </script>
-}
+            function generatePDF() {
+                const element = document.getElementById("tabla");
+                var opt = {
+                    filename: 'AltasMedicsReportes.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
 
+                html2pdf().set(opt).from(element).save();
 
+            }
+
+        </script>
+    }

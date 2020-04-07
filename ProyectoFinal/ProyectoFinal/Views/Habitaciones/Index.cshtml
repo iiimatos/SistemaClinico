@@ -6,63 +6,81 @@
 
 <h2>Habitaciones</h2>
 <br />
+
 <div style="position:relative; left:40px;">
     @using (Html.BeginForm("Index", "Habitaciones", FormMethod.Post))
     {
-    <div>
-        <h6 class="">Filtros de busqueda</h6>
+        <div>
+            <h6 class="">Filtros de busqueda</h6>
 
-        <div class="row">
-            <select name="select" class="form-control col col-md-4">
-                <option value="">--Selecciones--</option>
-                <option value="doble">Doble</option>
-                <option value="suite">Suite</option>
-                <option value="privada">Privada</option>
-            </select>
-            <div class="col col-md-2">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            <div class="row">
+                <select name="select" class="form-control col col-md-4">
+                    <option value="">--Selecciones--</option>
+                    <option value="doble">Doble</option>
+                    <option value="suite">Suite</option>
+                    <option value="privada">Privada</option>
+                </select>
+                <div class="col col-md-2">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="generatePDF();">PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 <br />
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div id="tabla">
+    <table class="table table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.IdHabitaciones }, new { @class = "btn btn-success" }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.IdHabitaciones }, new { @class = "btn btn-info" }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdHabitaciones }, new { @class = "btn btn-danger" })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdHabitaciones }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdHabitaciones }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdHabitaciones }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
 
-<p class="text-right">
-    @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
-</p>
+    </table>
+    </div>
+    <p class="text-right">
+        @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
+    </p>
+
+    <script>
+        function generatePDF() {
+            const element = document.getElementById("tabla");
+            var opt = {
+                filename: 'HabitacionesReportes.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+
+        }
+    </script>

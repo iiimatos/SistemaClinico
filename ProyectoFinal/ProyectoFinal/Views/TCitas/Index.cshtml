@@ -21,49 +21,65 @@
                 </select>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="generatePDF();">PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
     }
 </div>
 <br />
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicos.Nombre) Medico
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pacientes.Nombre) Paciente
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Reserva)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hora_Reserva)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div id="tabla">
+    <table class="table table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicos.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pacientes.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Reserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hora_Reserva)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicos.Nombre) Medico
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pacientes.Nombre) Paciente
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha_Reserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora_Reserva)
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medicos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pacientes.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_Reserva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora_Reserva)
+                </td>
+            </tr>
+        }
 
+    </table>
+</div>
+    <p class="text-right">
+        @Html.ActionLink("Registrar", "Create", "", new { @class = "btn btn-primary" })
+    </p>
 
-<p class="text-right">
-    @Html.ActionLink("Registrar", "Create","",new { @class = "btn btn-primary" })
-</p>
+    <script>
+        function generatePDF() {
+            const element = document.getElementById("tabla");
+            var opt = {
+                filename: 'CitasReportes.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+
+        }
+    </script>
